@@ -10,7 +10,7 @@ getDataBtn.addEventListener('click', () => {
     const lng = coords[1];
 
     fetchSunData(lat, lng, 'today');
-    fetchSunData(lat, 'tomorrow');
+    fetchSunData(lat, lng, 'tomorrow');
 });
 
 function fetchSunData(lat, lng, day) {
@@ -18,7 +18,7 @@ function fetchSunData(lat, lng, day) {
 
     fetch(url)
     .then(response => {
-        if (!respone.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
         .then(data => {
@@ -33,11 +33,12 @@ function fetchSunData(lat, lng, day) {
 function updateUI(results, day) {
     const prefix = (day === 'today') ? 'today' : 'tmrw';
 
+    document.getElementById(`${prefix}-date`).textContent = results.date;
     document.getElementById(`${prefix}-sunrise`).textContent = results.sunrise;
     document.getElementById(`${prefix}-sunset`).textContent = results.sunset;
     document.getElementById(`${prefix}-dawn`).textContent = results.dawn;
     document.getElementById(`${prefix}-dusk`).textContent = results.dusk;
-    document.getElementById(`${prefix}-solar-noon`).textContent = results.solar-noon;
-    document.getElementById(`${prefix}-day-length`).textContent = results.day-length;
-    document.getElementById(`${prefix}-time-zone`).textContent = results.time-zone;
+    document.getElementById(`${prefix}-solar-noon`).textContent = results.solar_noon;
+    document.getElementById(`${prefix}-day-length`).textContent = results.day_length;
+    document.getElementById(`${prefix}-time-zone`).textContent = results.timezone;
 }
