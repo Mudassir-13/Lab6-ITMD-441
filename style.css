@@ -37,3 +37,14 @@ p {
     border: 2px solid rgba(0, 0, 0, 0.1);
     color: #0f3f4a; 
 }
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
